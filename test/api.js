@@ -17,14 +17,14 @@ Glue.compose(manifest, { relativeTo: process.cwd() }, (err, server) => {
   lab.describe("Routes", () => {
 
     lab.it('Known route should return http status 200', done => {
-      server.inject('/api', response => {
+      server.inject('/api/v1', response => {
         Code.expect(response.statusCode).to.equal(200);
         done();
       });
     });
     
     lab.it('Restricted route should return http status 401 for anonymous user', done => {
-      server.inject('/api/restricted', response => {
+      server.inject('/api/v1/restricted', response => {
         Code.expect(response.statusCode).to.equal(401);
         done();
       });
@@ -33,7 +33,7 @@ Glue.compose(manifest, { relativeTo: process.cwd() }, (err, server) => {
     lab.it('Restricted route should return http status 200 for authenticated user', done => {
       var options = {
         method : 'GET',
-        url : '/api/restricted',
+        url : '/api/v1/restricted',
         headers : {
           'Authorization' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IkFudGhvbnkgVmFsaWQgVXNlciIsImlhdCI6MTQyNTQ3MzUzNX0.KA68l60mjiC8EXaC2odnjFwdIDxE__iDu5RwLdN1F2A',
           'Content-Type' : 'application/json; charset=utf-8'
@@ -46,7 +46,7 @@ Glue.compose(manifest, { relativeTo: process.cwd() }, (err, server) => {
     });
 
     lab.it('Unknown route should return http status 404', done => {
-      server.inject('/api/unkownroute', response => {
+      server.inject('/api/v1/unkownroute', response => {
         Code.expect(response.statusCode).to.equal(404);
         done();
       });

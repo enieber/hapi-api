@@ -19,10 +19,10 @@
       "plugin": "./auth"
     },
     {
-      "plugin": "./api",
-      "options": {
-        "routes": {
-          "prefix": "/api"
+      "plugin":{ 
+        "register": "hapi-router",
+        "options": {
+          "routes": "api/**/route.js"
         }
       }
     },
