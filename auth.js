@@ -14,7 +14,7 @@ exports.register = function (plugin, options, next) {
           name: 'Jon Snow'
         }
       ];
-      
+
       if (users.find(u => u.id === decoded.id)) {
         return callback(null, true);
       }
@@ -25,7 +25,7 @@ exports.register = function (plugin, options, next) {
   });
 
   // Uncomment this to apply default auth to all routes
-  //plugin.auth.default('jwt');
+plugin.auth.default('jwt');
 
   next();
 };
